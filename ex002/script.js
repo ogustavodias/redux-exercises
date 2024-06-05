@@ -8,7 +8,10 @@ import { fetchUser } from "./redux/reducers/user.js";
 async function login(userData) {
   let token = store.getState().tokenReducer.data;
 
-  if (!token) token = await store.dispatch(fetchToken(userData));
+  if (!token) {
+    await store.dispatch(fetchToken(userData));
+    token = store.getState().tokenReducer.data;
+  }
 
   const user = await store.dispatch(fetchUser(token));
 }
