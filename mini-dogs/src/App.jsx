@@ -5,27 +5,9 @@ import * as S from "./style";
 // Components
 import Header from "./components/Header";
 import Login from "./pages/Login";
-
-// Redux
-import { useDispatch } from "react-redux";
-import { fetchToken, fetchUser } from "./redux/auth/auth";
+import Photos from "./pages/Photos";
 
 function App() {
-  const dispatch = useDispatch();
-  async function login() {
-    let callToken;
-    let callUser;
-
-    callToken = await dispatch(
-      fetchToken({ username: "dog", password: "dog" })
-    );
-    const { token } = callToken.payload;
-    if (token) callUser = await dispatch(fetchUser(token));
-    console.log(callUser);
-  }
-
-  login();
-
   return (
     <>
       <GlobalStyle />
@@ -33,6 +15,7 @@ function App() {
         <S.App>
           <Header />
           <Login />
+          {/* <Photos /> */}
         </S.App>
       </S.Container>
     </>

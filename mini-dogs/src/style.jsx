@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const App = styled.main`
   flex: 1;
-  max-width: 500px;
+  max-width: 400px;
   padding: 2rem;
   margin: 0 auto;
 `;
