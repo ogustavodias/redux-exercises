@@ -1,8 +1,39 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { createCustomSlice } from "../../helper/createCustomSlice";
+import { createCustomSlice } from "../helper/createCustomSlice";
+
+// Helper function
+import getLocalStorage from "../../helper/getLocalStorage";
 
 const token = createCustomSlice({
   name: "token",
+  initialState: {
+    data: getLocalStorage("token", null),
+  },
+  reducers: {
+    fetchSuccess: {
+      reducer(state, action) {
+        state.loading = false;
+        state.data = action.payload;
+      },
+
+      prepare(payload) {
+        return {
+          payload,
+          meta: { localStorage: { key: "token", value: payload.token } },
+        };
+      },
+    },
+
+    clear: {
+      reducer(state) {
+        state.data = null;
+      },
+
+      prepare() {
+        return { meta: { localStorage: { key: "token", value: "" } } };
+      },
+    },
+  },
   fetchConfig: (user) => ({
     url: "https://dogsapi.origamid.dev/json/jwt-auth/v1/token",
     options: {
@@ -35,4 +66,6 @@ const authReducers = combineReducers({
 
 export const fetchToken = token.fetchAuth;
 export const fetchUser = user.fetchAuth;
+export const clearToken = token.logout;
+export const clearUser = user.logout;
 export default authReducers;

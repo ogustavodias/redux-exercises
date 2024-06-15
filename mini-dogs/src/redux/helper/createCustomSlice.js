@@ -33,11 +33,15 @@ export const createCustomSlice = (config) => {
         state.loading = false;
         state.error = action.payload;
       },
+
+      clear: (state) => {
+        state.data = null;
+      },
       ...config.reducers,
     },
   });
 
-  const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+  const { fetchStarted, fetchSuccess, fetchError, clear } = slice.actions;
 
   const fetchAuth = (payload) => async (dispatch) => {
     dispatch(fetchStarted());
@@ -56,5 +60,9 @@ export const createCustomSlice = (config) => {
     }
   };
 
-  return { ...slice, fetchAuth };
+  const logout = () => (dispatch) => {
+    dispatch(clear());
+  };
+
+  return { ...slice, fetchAuth, logout };
 };

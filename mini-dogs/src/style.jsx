@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   align-items: center;
+  
 `;
 
 export const App = styled.main`
@@ -12,4 +13,5 @@ export const App = styled.main`
   max-width: 400px;
   padding: 2rem;
   margin: 0 auto;
+  overflow-x: hidden;
 `;
