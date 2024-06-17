@@ -2,14 +2,26 @@ import styled, { keyframes } from "styled-components";
 
 const run = keyframes`
   to {
-    transform: translateX(-400px);
+    transform: translateX(400px);
   }
 `;
 
 export const Loading = styled.div`
-  transform: translateX(-1000px);
-  width: 1000%;
-  border: 2px dashed black;
-  animation: ${run} 0.9s infinite linear;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: black;
+
   margin-bottom: 40px;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 25%;
+    background-color: white;
+    border-radius: 4px;
+    animation: ${run} 0.6s linear infinite;
+  }
 `;

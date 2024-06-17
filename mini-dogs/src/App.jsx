@@ -12,9 +12,9 @@ import { useSelector } from "react-redux";
 import { Loading } from "./components/Loading/styles";
 
 function App() {
-  const state = useSelector((state) => state);
-  const logged = state.auth.user.data ? true : false;
-  const loading = state.auth.token.loading || state.auth.user.loading;
+  const { user, token } = useSelector((state) => state.auth);
+  const logged = user.data ? true : false;
+  const loading = token.loading || user.loading;
 
   return (
     <>
