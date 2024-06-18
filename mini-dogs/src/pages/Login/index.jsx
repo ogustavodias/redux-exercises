@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { fetchToken, fetchUser } from "../../redux/auth/auth";
+import { fetchToken, fetchUser } from "../../redux/reducers/auth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,17 +28,12 @@ const Login = () => {
     if (token) await dispatch(fetchUser(token));
   };
 
-  const autoLogin = React.useCallback(async () => {
-    await dispatch(fetchUser(token));
-  }, [token, dispatch]);
-
   React.useEffect(() => {
-    console.log(token);
-    if (token) autoLogin();
-  }, [autoLogin, token]);
+    if (token) dispatch(fetchUser(token));
+  }, [dispatch, token]);
 
   return (
-    <S.Login onSubmit={login}>
+    <S.Login onSubmit={login} className="anime">
       <Input
         label={"Usuário"}
         id={"username"}

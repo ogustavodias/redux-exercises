@@ -12,7 +12,7 @@ export const Loading = styled.div`
   border-radius: 4px;
   background-color: black;
 
-  margin-bottom: 40px;
+  margin: 40px 0;
   overflow: hidden;
 
   &::after {

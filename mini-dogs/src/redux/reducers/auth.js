@@ -64,8 +64,8 @@ const authReducers = combineReducers({
   user: user.reducer,
 });
 
-export const fetchToken = token.fetchAuth;
-export const fetchUser = user.fetchAuth;
+export const fetchToken = token.asyncFetch;
+export const fetchUser = user.asyncFetch;
 export const clearToken = token.logout;
 export const clearUser = user.logout;
 export default authReducers;

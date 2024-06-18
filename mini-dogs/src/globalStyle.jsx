@@ -23,4 +23,17 @@ img {
   max-width: 100%;
 }
 
+.anime {
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: show .3s ease forwards;
+  }
+
+@keyframes show {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
 `;

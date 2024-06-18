@@ -1,15 +1,39 @@
+import React from "react";
+
+// Styles
 import * as S from "./styles";
-import imgTest from "../../assets/login-800344e4.jpg";
+
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { loadPhotos } from "../../redux/reducers/photos";
+import { Loading } from "../../components/Loading/styles";
+import More from "../../components/More";
 
 const Photos = () => {
+  const dispatch = useDispatch();
+  const { photos } = useSelector((state) => state);
+
+  React.useEffect(() => {
+    dispatch(loadPhotos(1));
+  }, [dispatch]);
+
+  if (!photos.list) return <Loading />;
+
   return (
-    <S.Photos>
-      <S.Item>
-        <img src={imgTest} alt="" />
-        <span>Joel</span>
-        <span>11350</span>
-      </S.Item>
-    </S.Photos>
+    <>
+      <S.Photos>
+        {photos.list.map((item) => {
+          return (
+            <S.Item key={item.id} className="anime">
+              <img src={item.src} alt="" />
+              <span>{item.title}</span>
+              <span>{item.acessos}</span>
+            </S.Item>
+          );
+        })}
+      </S.Photos>
+      <More />
+    </>
   );
 };
 

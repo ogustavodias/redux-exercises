@@ -43,7 +43,7 @@ export const createCustomSlice = (config) => {
 
   const { fetchStarted, fetchSuccess, fetchError, clear } = slice.actions;
 
-  const fetchAuth = (payload) => async (dispatch) => {
+  const asyncFetch = (payload) => async (dispatch) => {
     dispatch(fetchStarted());
 
     try {
@@ -64,5 +64,5 @@ export const createCustomSlice = (config) => {
     dispatch(clear());
   };
 
-  return { ...slice, fetchAuth, logout };
+  return { ...slice, asyncFetch, logout };
 };
